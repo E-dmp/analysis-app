@@ -1,9 +1,13 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { nanoid } from 'nanoid'
-
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from 'react-vertical-timeline-component'
+import 'react-vertical-timeline-component/style.min.css'
 type Tweet = {
-  TweetData:Array<string> 
+  TweetData: Array<string>
 }
 
 function App () {
@@ -21,14 +25,31 @@ function App () {
       <div>感情分析アプリ</div>
       <div>
         {data ? (
-          <div>{data.TweetData.map((twdata) => (
-            <li key={nanoid()}>{twdata}</li>
-          ))}</div>
+          <div>
+            <VerticalTimeline>
+            {data.TweetData.map((twdata) => (
+                <VerticalTimelineElement
+                  key={nanoid()}
+                  className='vertical-timeline-element--work'
+                  contentStyle={{
+                    background: 'rgb(33, 150, 243)',
+                    color: '#fff',
+                  }}
+                  contentArrowStyle={{
+                    borderRight: '7px solid  rgb(33, 150, 243)',
+                  }}
+                  date='2011 - present'
+                  iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                >
+                  <h3 className='vertical-timeline-element-title'>{twdata}</h3>
+                </VerticalTimelineElement>
+                
+                ))}
+                </VerticalTimeline>
+          </div>
         ) : (
           <button onClick={getTweetData}>データを取得</button>
         )}
-
-
       </div>
     </div>
   )
