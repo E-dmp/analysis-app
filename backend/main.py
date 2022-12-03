@@ -4,7 +4,7 @@ import tweepy
 import requests
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
-from authentication_module import get_authentication_info
+from authentication_module import getTwitterAuthInfo
 
 app = FastAPI()
 
@@ -22,10 +22,10 @@ app.add_middleware(
 
 def twitterAuth():
 
-    api_key = get_authentication_info("api_key")
-    api_secret = get_authentication_info("api_secret")
-    access_token = get_authentication_info("access_token")
-    access_token_secret = get_authentication_info("access_token_secret")
+    api_key = getTwitterAuthInfo("api_key")
+    api_secret = getTwitterAuthInfo("api_secret")
+    access_token = getTwitterAuthInfo("access_token")
+    access_token_secret = getTwitterAuthInfo("access_token_secret")
 
     auth = tweepy.OAuthHandler(api_key, api_secret)
     auth.set_access_token(access_token, access_token_secret)
@@ -37,7 +37,12 @@ def twitterAuth():
 def getUserTimeLine():
 
     api = twitterAuth()
-    user_tweet = api.user_timeline(screen_name="",include_rts=False)
+    TWEET_COUNT = 10
+    
+    # user_tweet = api.user_timeline(screen_name="yes_deknobou",include_rts=False,q=SEARCH_KEYWORD)
+    # user_tweet = tweepy.Cursor(api.search_tweets, q='#天国大魔境' id="yes_deknobou")
+    user_tweet = tweepy.Cursor(api.user_timeline,screen_name="",include_rts=False).items(TWEET_COUNT)
+    # user_tweet = tweepy.Cursor(api.user_timeline, screen_name="rt1230909", q=SEARCH_KEYWORD).items(TWEET_COUNT)
 
     return user_tweet
 
@@ -49,6 +54,7 @@ def getTweetData():
     user_tweet = getUserTimeLine()
 
     for tweet in user_tweet:
-        result.append(tweet.text)
+        if not "RT @" in tweet.text[0:4] and "#プログラミング" in tweet.text: 
+            result.append(tweet.text)
 
     return {"TweetData":result}

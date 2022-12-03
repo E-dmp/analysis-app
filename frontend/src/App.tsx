@@ -3,8 +3,7 @@ import { useState } from 'react'
 import { nanoid } from 'nanoid'
 
 type Tweet = {
-  TweetData:any
-  text: string
+  TweetData:Array<string> 
 }
 
 function App () {
@@ -22,7 +21,7 @@ function App () {
       <div>感情分析アプリ</div>
       <div>
         {data ? (
-          <div>{data.TweetData.map((twdata: string[]) => (
+          <div>{data.TweetData.map((twdata) => (
             <li key={nanoid()}>{twdata}</li>
           ))}</div>
         ) : (
