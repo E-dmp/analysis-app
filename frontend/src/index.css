@@ -1,13 +1,86 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #dee6f0;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+*{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+.centerTitle h1{
+  color: rgb(138, 160, 95);
+}
+.vertical-timeline-element-date {
+  color: black;
+  letter-spacing: 1px;
+}
+
+.mediaImages {
+  width: 100%;
+  aspect-ratio: 2/1;
+  object-fit: cover;
+}
+.cardHeader {
+  display: flex;
+  gap: 0 20px;
+}
+.cardHeader .userIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgb(178, 224, 220);
+}
+.vertical-timeline-element-content{
+  cursor: pointer;
+  transition: .3s;
+
+}
+.vertical-timeline-element-content:hover{
+  display: block;
+  background:#000;
+  box-shadow:0px 0px 10px rgb(192, 191, 191);
+  color:#fff;
+  transition: .3s;
+}
+.linkWrap{
+  text-decoration: none !important;
+}
+.linkWrap:hover{
+  
+}
+.userName{
+  /* color: black; */
+}
+.twText{
+color: black;
+}
+
+.centerTitle {
+  text-align: center;
+}
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+ 
+}
+.button {
+  border: solid 1px rgb(165, 164, 164);
+  padding: 16px 72px;
+  border-radius: 5%;
+  transition: .3s;
+
+}
+.button:hover {
+  cursor: pointer;
+  box-shadow:0px 0px 4px rgb(147, 147, 147);
+  transition: .3s;
+
 }
